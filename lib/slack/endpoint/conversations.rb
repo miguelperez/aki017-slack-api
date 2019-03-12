@@ -36,6 +36,8 @@ module Slack
       #   Name of the public or private channel to create
       # @option options [Object] :is_private
       #   Create a private channel instead of a public one
+      # @option options [Object] :user_ids
+      #   Required for workspace apps. A list of between 1 and 30 human users that will be added to the newly-created conversation. This argument has no effect when used by classic Slack apps.
       # @see https://api.slack.com/methods/conversations.create
       # @see https://github.com/aki017/slack-api-docs/blob/master/methods/conversations.create.md
       # @see https://github.com/aki017/slack-api-docs/blob/master/methods/conversations.create.json
@@ -74,6 +76,8 @@ module Slack
       #   Conversation ID to learn more about
       # @option options [Object] :include_locale
       #   Set this to true to receive the locale for this conversation. Defaults to false
+      # @option options [Object] :include_num_members
+      #   Set to true to include the member count for the specified conversation. Defaults to false
       # @see https://api.slack.com/methods/conversations.info
       # @see https://github.com/aki017/slack-api-docs/blob/master/methods/conversations.info.md
       # @see https://github.com/aki017/slack-api-docs/blob/master/methods/conversations.info.json

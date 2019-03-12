@@ -26,6 +26,10 @@ module Slack
       #
       # @option options [Object] :count
       #   Number of items to return per page.
+      # @option options [Object] :cursor
+      #   Parameter for pagination. Set cursor equal to the next_cursor attribute returned by the previous request's response_metadata. This parameter is optional, but pagination is mandatory: the default value simply fetches the first "page" of the collection. See pagination for more details.
+      # @option options [Object] :limit
+      #   The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the list hasn't been reached.
       # @option options [Object] :page
       #   Page number of results to return.
       # @see https://api.slack.com/methods/stars.list

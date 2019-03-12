@@ -11,9 +11,9 @@ module Slack
       # @option options [Object] :channel
       #   Channel where the message to add reaction to was posted.
       # @option options [Object] :file
-      #   File to add reaction to.
+      #   File to add reaction to. Now that file threads work the way you'd expect, this argument is deprecated. Specify the timestamp and channel of the message associated with a file instead.
       # @option options [Object] :file_comment
-      #   File comment to add reaction to.
+      #   File comment to add reaction to. Now that file threads work the way you'd expect, this argument is deprecated. Specify the timestamp and channel of the message associated with a file instead.
       # @option options [Object] :timestamp
       #   Timestamp of the message to add reaction to.
       # @see https://api.slack.com/methods/reactions.add
@@ -49,8 +49,12 @@ module Slack
       #
       # @option options [Object] :count
       #   Number of items to return per page.
+      # @option options [Object] :cursor
+      #   Parameter for pagination. Set cursor equal to the next_cursor attribute returned by the previous request's response_metadata. This parameter is optional, but pagination is mandatory: the default value simply fetches the first "page" of the collection. See pagination for more details.
       # @option options [Object] :full
       #   If true always return the complete reaction list.
+      # @option options [Object] :limit
+      #   The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the list hasn't been reached.
       # @option options [Object] :page
       #   Page number of results to return.
       # @option options [Object] :user

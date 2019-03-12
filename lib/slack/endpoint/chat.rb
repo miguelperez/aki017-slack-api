@@ -63,13 +63,17 @@ module Slack
       # @option options [Object] :user
       #   id of the user who will receive the ephemeral message. The user should be in the channel specified by the channel argument.
       # @option options [Object] :as_user
-      #   Pass true to post the message as the authed bot. Defaults to false.
+      #   Pass true to post the message as the authed user. Defaults to true if the chat:write:bot scope is not included. Otherwise, defaults to false.
       # @option options [Object] :attachments
       #   A JSON-based array of structured attachments, presented as a URL-encoded string.
+      # @option options [Object] :blocks
+      #   A JSON-based array of structured blocks, presented as a URL-encoded string.
       # @option options [Object] :link_names
       #   Find and link channel names and usernames.
       # @option options [Object] :parse
       #   Change how messages are treated. Defaults to none. See below.
+      # @option options [Object] :thread_ts
+      #   Provide another message's ts value to make this message a reply. Avoid using a reply's ts value; use its parent instead.
       # @see https://api.slack.com/methods/chat.postEphemeral
       # @see https://github.com/aki017/slack-api-docs/blob/master/methods/chat.postEphemeral.md
       # @see https://github.com/aki017/slack-api-docs/blob/master/methods/chat.postEphemeral.json
@@ -87,17 +91,21 @@ module Slack
       # @option options [Object] :channel
       #   Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name. See below for more details.
       # @option options [Object] :text
-      #   Text of the message to send. See below for an explanation of formatting. This field is usually required, unless you're providing only attachments instead.
+      #   Text of the message to send. See below for an explanation of formatting. This field is usually required, unless you're providing only attachments instead. Provide no more than 40,000 characters or risk truncation.
       # @option options [Object] :as_user
       #   Pass true to post the message as the authed user, instead of as a bot. Defaults to false. See authorship below.
       # @option options [Object] :attachments
       #   A JSON-based array of structured attachments, presented as a URL-encoded string.
+      # @option options [Object] :blocks
+      #   A JSON-based array of structured blocks, presented as a URL-encoded string.
       # @option options [Object] :icon_emoji
       #   Emoji to use as the icon for this message. Overrides icon_url. Must be used in conjunction with as_user set to false, otherwise ignored. See authorship below.
       # @option options [Object] :icon_url
       #   URL to an image to use as the icon for this message. Must be used in conjunction with as_user set to false, otherwise ignored. See authorship below.
       # @option options [Object] :link_names
       #   Find and link channel names and usernames.
+      # @option options [Object] :mrkdwn
+      #   Disable Slack markup parsing by setting to false. Enabled by default.
       # @option options [Object] :parse
       #   Change how messages are treated. Defaults to none. See below.
       # @option options [Object] :reply_broadcast
@@ -128,7 +136,7 @@ module Slack
       # @option options [Object] :ts
       #   Timestamp of the message to add unfurl behavior to.
       # @option options [Object] :unfurls
-      #   URL-encoded JSON map with keys set to URLs featured in the the message, pointing to their unfurl message attachments.
+      #   URL-encoded JSON map with keys set to URLs featured in the the message, pointing to their unfurl blocks or message attachments.
       # @option options [Object] :user_auth_message
       #   Provide a simply-formatted string to send as an ephemeral message to the user as invitation to authenticate further and enable full unfurling behavior
       # @option options [Object] :user_auth_required
@@ -158,8 +166,10 @@ module Slack
       #   Pass true to update the message as the authed user. Bot users in this context are considered authed users.
       # @option options [Object] :attachments
       #   A JSON-based array of structured attachments, presented as a URL-encoded string. This field is required when not presenting text.
+      # @option options [Object] :blocks
+      #   A JSON-based array of structured blocks, presented as a URL-encoded string.
       # @option options [Object] :link_names
-      #   Find and link channel names and usernames. Defaults to none. This parameter should be used in conjunction with parse. To set link_names to 1, specify a parse mode of full.
+      #   Find and link channel names and usernames. Defaults to none. See below.
       # @option options [Object] :parse
       #   Change how messages are treated. Defaults to client, unlike chat.postMessage. See below.
       # @see https://api.slack.com/methods/chat.update

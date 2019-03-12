@@ -30,7 +30,7 @@ module Slack
       # Searches for files matching a query.
       #
       # @option options [Object] :query
-      #   Search query. May contain booleans, etc.
+      #   Search query.
       # @option options [Object] :count
       #   Number of items to return per page.
       # @option options [Object] :highlight
@@ -53,9 +53,9 @@ module Slack
       # Searches for messages matching a query.
       #
       # @option options [Object] :query
-      #   Search query. May contains booleans, etc.
+      #   Search query.
       # @option options [Object] :count
-      #   Pass the number of results you want per "page". Maximum of 100.
+      #   Number of items to return per page.
       # @option options [Object] :highlight
       #   Pass a value of true to enable query highlight markers (see below).
       # @option options [Object] :page

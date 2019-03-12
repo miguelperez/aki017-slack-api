@@ -4,6 +4,26 @@ module Slack
   module Endpoint
     module Users
       #
+      # List conversations the calling user may access.
+      #
+      # @option options [Object] :cursor
+      #   Paginate through collections of data by setting the cursor parameter to a next_cursor attribute returned by a previous request's response_metadata. Default value fetches the first "page" of the collection. See pagination for more detail.
+      # @option options [Object] :exclude_archived
+      #   Set to true to exclude archived channels from the list
+      # @option options [Object] :limit
+      #   The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the list hasn't been reached. Must be an integer no larger than 1000.
+      # @option options [Object] :types
+      #   Mix and match channel types by providing a comma-separated list of any combination of public_channel, private_channel, mpim, im
+      # @option options [Object] :user
+      #   Browse conversations by a specific user ID's membership. Non-public channels are restricted to those where the calling user shares membership.
+      # @see https://api.slack.com/methods/users.conversations
+      # @see https://github.com/aki017/slack-api-docs/blob/master/methods/users.conversations.md
+      # @see https://github.com/aki017/slack-api-docs/blob/master/methods/users.conversations.json
+      def users_conversations(options={})
+        post("users.conversations", options)
+      end
+
+      #
       # Delete the user profile photo
       #
       # @see https://api.slack.com/methods/users.deletePhoto
@@ -61,7 +81,7 @@ module Slack
       # @option options [Object] :limit
       #   The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the users list hasn't been reached.
       # @option options [Object] :presence
-      #   Whether to include presence data in the output. Defaults to false. Setting this to true reduces performance, especially with large teams.
+      #   Deprecated. Whether to include presence data in the output. Defaults to false. Setting this to true reduces performance, especially with large teams.
       # @see https://api.slack.com/methods/users.list
       # @see https://github.com/aki017/slack-api-docs/blob/master/methods/users.list.md
       # @see https://github.com/aki017/slack-api-docs/blob/master/methods/users.list.json
@@ -102,7 +122,7 @@ module Slack
       # @option options [Object] :name
       #   Name of a single key to set. Usable only if profile is not passed.
       # @option options [Object] :profile
-      #   Collection of key:value pairs presented as a URL-encoded JSON hash.
+      #   Collection of key:value pairs presented as a URL-encoded JSON hash. At most 50 fields may be set. Each field name is limited to 255 characters.
       # @option options [Object] :user
       #   ID of user to change. This argument may only be specified by team admins on paid teams.
       # @option options [Object] :value
@@ -115,7 +135,7 @@ module Slack
       end
 
       #
-      # Marks a user as active.
+      # Marked a user as active. Deprecated and non-functional.
       #
       # @see https://api.slack.com/methods/users.setActive
       # @see https://github.com/aki017/slack-api-docs/blob/master/methods/users.setActive.md
